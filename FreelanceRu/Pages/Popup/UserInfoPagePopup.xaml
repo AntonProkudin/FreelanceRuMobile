@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FreelanceRu.Pages.Popup.UserInfoPagePopup"
+             Title="UserInfoPagePopup"
+             xmlns:local="FreelanceRu.Pages"
+             NavigatedTo="NavigateInit"
+             xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+             xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
+             Padding="-12."
+             BackgroundColor="#303030">
+
+    <RefreshView Margin="10" IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}" HorizontalOptions="Center">
+        <AbsoluteLayout>
+            <ScrollView AbsoluteLayout.LayoutBounds="0, 570, 386, 70" HeightRequest ="500" ZIndex="2" BackgroundColor="Transparent">
+                <StackLayout Margin="0,50,0,0">
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Label Text="{Binding UserInfo.FirstName}" FontAttributes="Bold" FontSize="30" TextColor="White"/>
+                        <Label Text="T" FontSize="30" TextColor="Transparent"/>
+                        <Label Text="{Binding UserInfo.LastName}" FontAttributes="Bold"  FontSize="30" TextColor="White"/>
+                        <mdc:IconButton HeightRequest="30" WidthRequest="30" IconColor="#00D65B" Opacity="1" BackgroundColor="Transparent" IconData="{Static icon:Material.Check}"/>
+                    </HorizontalStackLayout>
+                    <Frame Opacity="0.8" BackgroundColor="#00D65B" Margin="0,10,0,0" CornerRadius="20" HeightRequest="70" WidthRequest="300" BorderColor="Transparent">
+                        <HorizontalStackLayout >
+                            <mdc:IconButton HeightRequest="40" WidthRequest="40" IconColor="White" Opacity="1" BackgroundColor="Transparent" IconData="{Static icon:Material.Mail}"/>
+                            <Label Margin="0,5,0,0" Text="{Binding UserInfo.Email}" FontSize="14" FontAttributes="Bold" TextColor="White"/>
+                        </HorizontalStackLayout>
+                    </Frame>
+                    <Frame Opacity="0.9" BackgroundColor="#60000000" Margin="0,10,0,0" CornerRadius="20" HeightRequest="70" WidthRequest="300" BorderColor="Transparent">
+                        <HorizontalStackLayout >
+                            <mdc:Button HeightRequest="40" WidthRequest="40" IconColor="White" Opacity="1" BackgroundColor="Transparent" Text="GitHub:" Margin="0,0,0,0"/>
+                            <Label Margin="-10,5,0,0" Text="github.com/AntonProkudin" FontSize="14" FontAttributes="Bold" TextColor="White"/>
+                        </HorizontalStackLayout>
+                    </Frame>
+                    <Frame Opacity="1" BackgroundColor="#0088cc" Margin="0,10,0,0" CornerRadius="20" HeightRequest="70" WidthRequest="300" BorderColor="Transparent">
+                        <HorizontalStackLayout >
+                            <mdc:Button HeightRequest="40" WidthRequest="40"  Opacity="1" BackgroundColor="Transparent" Text="Telegram:" Margin="0,0,0,0"/>
+                            <Label Margin="-8,5,0,0" Text="@proker1980" FontSize="14" FontAttributes="Bold" TextColor="White"/>
+                        </HorizontalStackLayout>
+                    </Frame>
+                    <Label Text="О себе:" HorizontalTextAlignment="Start" FontAttributes="Bold" Margin="20,20,0,0" FontSize="30" TextColor="White"/>
+                    <Label FontSize="20" Margin="10" WidthRequest="300" Text="    Заходит компьютерщик в булочную после бессонной ночи у компьютера, провозившись с установкой кривой видеокарты, и говорит:- Мне, пожалуйста, буханку черно-белого хлеба и батон цветного...."/>
+                    <Label Text="Навыки:" HorizontalTextAlignment="Start" FontAttributes="Bold" Margin="20,10,0,0" FontSize="30" TextColor="White"/>
+                    <CollectionView 
+                                ItemsSource="{Binding UserInfo.UserSkills}"
+                                x:Name="MyCollectionViews"
+                                VerticalScrollBarVisibility="Never">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <VerticalStackLayout HorizontalOptions="Start" Margin="30,10,0,0" Padding="1">
+                                    <mdc:Button BackgroundColor="Transparent" FontSize="20" FontColor="White" IconColor="#00D65B" IconData="{Static icon:Material.ChevronRight}" Text="{Binding Title}"/>
+                                </VerticalStackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Frame Opacity="0.7" BackgroundColor="#00D65B" Margin="0,10,0,70" CornerRadius="10" Padding="10" HeightRequest="50" WidthRequest="380" BorderColor="Transparent">
+                        <HorizontalStackLayout HorizontalOptions="Center">
+                            <Label Margin="0,5,0,0" Text="Дата регистрации:" FontSize="14" FontAttributes="Bold" TextColor="White"/>
+                            <Label Margin="0,5,0,0" Text="{Binding UserInfo.Ts}" FontSize="14" FontAttributes="Bold" TextColor="White"/>
+                        </HorizontalStackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+            <Frame AbsoluteLayout.LayoutBounds="70, 0, 250, 300" CornerRadius="40" Margin="0,0,0,0" Padding="0" HeightRequest="400" WidthRequest="400" BorderColor="Transparent">
+                <Image Aspect="AspectFill" WidthRequest="400" Opacity="0.7" Source="{Binding UserInfo.Avatar}"/>
+            </Frame>
+            <mdc:IconButton HeightRequest="50" WidthRequest="50" IconColor="White" Opacity="0.4" AbsoluteLayout.LayoutBounds="220, 30, 250, 70" BackgroundColor="Black" IconData="{Static icon:Material.MoreVert}"/>
+            <Frame ZIndex="4" AbsoluteLayout.LayoutBounds="70, 280, 250, 70" CornerRadius="50" HeightRequest="153" WidthRequest="153" BackgroundColor="GhostWhite" BorderColor="#90ffffff">
+                <Frame  CornerRadius="50" Margin="0,0,0,0" VerticalOptions="Center" HorizontalOptions="Center" Padding="0" HeightRequest="150" WidthRequest="150" BorderColor="Transparent" >
+                    <Image Aspect="AspectFill" WidthRequest="150" Source="{Binding UserInfo.Avatar}"/>
+                </Frame>
+            </Frame>
+            <Frame AbsoluteLayout.LayoutBounds="68, 650, 250, 70" CornerRadius="20" Margin="0,10,0,0" Padding="0" HeightRequest="800" WidthRequest="385" BackgroundColor="#303030" BorderColor="#303035" ZIndex="1"/>
+            <!--<Frame IsVisible="{Binding IsRefreshing}" AbsoluteLayout.LayoutBounds="-40, 0, 400, 100" CornerRadius="20" Opacity="0.65" Margin="0,10,0,0" Padding="0" HeightRequest="10000" WidthRequest="10000" BackgroundColor="#303030" BorderColor="#303035" ZIndex="20"/>-->
+        </AbsoluteLayout>
+    </RefreshView>
+</ContentPage>

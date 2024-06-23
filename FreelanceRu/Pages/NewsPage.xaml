@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FreelanceRu.Pages.NewsPage"
+             xmlns:local="FreelanceRu.Pages"
+             NavigatedTo="NavigateInit"
+             xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+             xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="NewsPage"
+             Padding="-12."
+             BackgroundColor="#303030">
+    <RefreshView Margin="10" IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}" HorizontalOptions="Center">
+        <Grid RowSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <VerticalStackLayout  Grid.Row="0" Margin="10,50,0,0">
+                <HorizontalStackLayout>
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <SwipeGestureRecognizer Direction="Down" Command="{Binding RefreshCommand}"/>
+                    </HorizontalStackLayout.GestureRecognizers>
+                    <Label Text="Новости" HorizontalOptions="Center" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontSize="28" FontAttributes="Bold" FontFamily="MontMont" Margin="30,0,0,0"/>
+                    <mdc:IconButton HeightRequest="50" WidthRequest="50" IconColor="White" Opacity="0.4" Margin="160,10,0,0"  BackgroundColor="Black" IconData="{Static icon:Material.MoreVert}"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+            <Border Grid.Row="2" BackgroundColor="Transparent" Stroke="Transparent">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20,20,20,20"/>
+                </Border.StrokeShape>
+                <CollectionView 
+                ItemsSource="{Binding News}"
+                x:Name="MyCollectionViews"
+                Grid.Row="3"
+                VerticalScrollBarVisibility="Never">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout>
+                                <Frame  Opacity="0.9" BackgroundColor="#60000000" BorderColor="Transparent" CornerRadius="15" Margin="10">
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding Id}" TextColor="red" IsVisible="False"/>
+                                        <Label FontAttributes="Bold" BackgroundColor="Transparent" FontSize="25" TextColor="White"  Text="{Binding Title}" Margin="5,10,30,0"/>
+                                        <Frame Padding="0" WidthRequest="320" Margin="0,10,0,0" BorderColor="Transparent">
+                                            <Image WidthRequest="320" Source="{Binding Url}"/>
+                                        </Frame>
+                                        <toolkit:Expander>
+                                            <toolkit:Expander.Header>
+                                                <mdc:IconButton HeightRequest="50" WidthRequest="50" HorizontalOptions="Start" IconColor="White" Opacity="0.4" Margin="10,10,0,0"  BackgroundColor="Black" IconData="{Static icon:Material.MoreHoriz}"/>
+                                            </toolkit:Expander.Header>
+                                            <HorizontalStackLayout>
+                                                <Label
+                                                    IsVisible="true"
+                                                    x:Name="Description"
+                                                    MaximumWidthRequest="300"
+                                                    Margin="20,15,0,50"
+                                                    TextColor="White"
+                                                    FontSize="20"
+                                                    Text="{Binding Description}"
+                                                    VerticalOptions="Start" 
+                                                    HorizontalOptions="Start"/>
+                                            </HorizontalStackLayout>
+                                        </toolkit:Expander>
+                                        <mdc:Button HorizontalOptions="End" BackgroundColor="Transparent" Margin="-10,-30,-10,-10" FontSize="10" FontColor="#00D65B" Text="{Binding Ts}" />
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </VerticalStackLayout>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Border>
+        </Grid>
+
+    </RefreshView>
+</ContentPage>

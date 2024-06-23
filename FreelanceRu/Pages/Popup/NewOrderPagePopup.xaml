@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FreelanceRu.Pages.Popup.NewOrderPagePopup"
+             Title="NewOrderPagePopup"
+             Shell.PresentationMode="ModalAnimated"
+             xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+             xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <mdc:ProgressIndicator x:Name="activityIndicator" IsVisible="False" Style="{DynamicResource CircularProgressIndicatorStyle}" />
+        <VerticalStackLayout Grid.Row="1">
+            <mdc:IconButton IconData="{Static icon:Material.OrderApprove}" Style="{DynamicResource OutlinedIconButtonStyle}" IconColor="#228E5D" />
+            <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Title" Text="Создайте новый заказ"/>
+        </VerticalStackLayout>
+        <StackLayout Grid.Row="2">
+            <VerticalStackLayout >
+                <mdc:TextField
+                    x:Name="TitleField"
+                    SupportingText=""
+                    LabelText="Заголовок"
+                    IconData="{Static icon:Material.Title}"
+                    Style="{DynamicResource FilledTextFieldStyle}"
+                    WidthRequest="250" />
+                <mdc:TextField
+                    x:Name="DescriptionField"
+                    SupportingText=""
+                    LabelText="Описание"
+                    IconData="{Static icon:Material.Description}"
+                    Style="{DynamicResource FilledTextFieldStyle}"
+                    WidthRequest="250" />
+                <mdc:TextField
+                    x:Name="CategoryField"
+                    SupportingText=""
+                    LabelText="Категория"
+                    IconData="{Static icon:Material.Description}"
+                    Style="{DynamicResource FilledTextFieldStyle}"
+                    WidthRequest="250" />
+                <mdc:TextField
+                    x:Name="PriceField"
+                    SupportingText=""
+                    LabelText="Стоимость"
+                    IconData="{Static icon:Material.CardTravel}"
+                    Style="{DynamicResource FilledTextFieldStyle}"
+                    WidthRequest="250" />
+            </VerticalStackLayout>
+            <HorizontalStackLayout>
+                <mdc:Button Margin="40,0,20,0" HorizontalOptions="Center" HeightRequest="50"  WidthRequest="140" Style="{DynamicResource FilledTonalButtonStyle}" Text="Изменить" Clicked="Button_Clicked_1"/>
+                <mdc:Button HeightRequest="50"  WidthRequest="140" Style="{DynamicResource FilledTonalButtonStyle}" Text="Отмена" Clicked="Button_Clicked" />
+            </HorizontalStackLayout>
+        </StackLayout>
+
+
+    </Grid>
+</ContentPage>

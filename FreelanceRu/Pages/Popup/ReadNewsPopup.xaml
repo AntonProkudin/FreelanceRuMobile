@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<md:Popup
+    x:Class="FreelanceRu.Pages.Popup.ReadNewsPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:md="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui">
+
+    <md:Card
+        BackgroundColor="{DynamicResource SurfaceColor}"
+        Shape="28"
+        WidthRequest="350">
+        <Grid Padding="24" RowDefinitions="auto,auto,auto">
+            <Label
+                TextColor="{DynamicResource OnSurfaceVariantColor}"
+                FontSize="24"
+                HorizontalOptions="Center"
+                Text="Новость" />
+            <Label
+                x:Name="News"
+                Grid.Row="1"
+                Padding="0,24,0,16"
+                Text="Оповещать о свежих новостях?"
+                TextColor="{DynamicResource OnSurfaceVariantColor}" />
+            <HorizontalStackLayout
+                Grid.Row="2"
+                HorizontalOptions="End"
+                Spacing="8">
+                <md:Button
+                    Clicked="CancelClicked"
+                    x:Name="Cancel"
+                    FontWeight="Medium"
+                    Style="{DynamicResource TextButtonStyle}"
+                    Text="Закрыть" />
+            </HorizontalStackLayout>
+        </Grid>
+    </md:Card>
+</md:Popup>

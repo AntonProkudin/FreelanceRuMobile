@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="FreelanceRu.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:FreelanceRu.Pages"
+    xmlns:helper="clr-namespace:FreelanceRu.Helpers"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="True"
+    xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+    xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material">
+    
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+        Title="Чат"
+        ContentTemplate="{DataTemplate local:ListChatPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="IconFontTypes"  Glyph="{x:Static helper:IconFontHelper.Messenger}" Size="50"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent
+        Title="Биржа"
+        ContentTemplate="{DataTemplate local:StockPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="IconFontTypes" Glyph="{x:Static helper:IconFontHelper.List_alt}" Size="50"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent
+        Title="Заказы"
+        ContentTemplate="{DataTemplate local:OrdersPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="IconFontTypes" Glyph="{x:Static helper:IconFontHelper.Add_box}" Size="50"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent
+        Title="Профиль"
+        ContentTemplate="{DataTemplate local:ProfilePage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="IconFontTypes" Glyph="{x:Static helper:IconFontHelper.Supervised_user_circle}" Size="50"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent
+            Title="Новости"
+            ContentTemplate="{DataTemplate local:NewsPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="IconFontTypes" Glyph="{x:Static helper:IconFontHelper.Newspaper}" Size="50"/>
+            </ShellContent.Icon>
+        </ShellContent>
+    </FlyoutItem>
+</Shell>

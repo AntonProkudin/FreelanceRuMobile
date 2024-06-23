@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FreelanceRu.Pages.ChatPage"
+             xmlns:local="FreelanceRu.Pages"
+             NavigatedTo="NavigateInit"
+             xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+             xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
+             xmlns:viewModel="clr-namespace:FreelanceRu.ViewModels"
+             Title="ChatPage"
+             Padding="-12."
+             BackgroundColor="#303030">
+    <RefreshView Margin="10" IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}" HorizontalOptions="Center">
+        <Grid RowSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="600"/>
+                <RowDefinition Height="110"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <VerticalStackLayout Grid.Row="0" BackgroundColor="Transparent">
+                <HorizontalStackLayout WidthRequest="390" Margin="10,60,0,0">
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <SwipeGestureRecognizer Direction="Down" Command="{Binding RefreshCommand}"/>
+                    </HorizontalStackLayout.GestureRecognizers>
+                    
+                    <HorizontalStackLayout WidthRequest="350">
+                        <Frame BackgroundColor="Transparent" Margin="10,0,0,0" Padding="0" CornerRadius="90"  WidthRequest="40" HeightRequest="40" BorderColor="Transparent">
+                            <Image WidthRequest="40" HeightRequest="40" Aspect="Fill" Source="{Binding Avatar}"/>
+                        </Frame>
+                        <Label Text="{Binding FirstName}" HorizontalOptions="Start" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontSize="Title" FontAttributes="Bold" FontFamily="MontMont" Margin="30,0,0,0"/>
+                        <Label Text="{Binding LastName}" HorizontalOptions="Start" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontSize="Title" FontAttributes="Bold" FontFamily="MontMont" Margin="5,0,0,0"/>
+                    </HorizontalStackLayout>
+                    
+                    <mdc:IconButton HeightRequest="40" WidthRequest="40" VerticalOptions="Center" HorizontalOptions="Start" IconColor="White" Opacity="0.4" Margin="-20,0,0,0"  BackgroundColor="Black" IconData="{Static icon:Material.MoreVert}"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+            <CollectionView
+                ItemsUpdatingScrollMode="KeepLastItemInView"
+                Grid.Row="1"
+                Opacity="0.8"
+                BackgroundColor="#272727"
+                Margin="0,0,0,0"
+                ItemsSource="{Binding MessageList}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Margin="10,0,10,10">
+                            <Label
+                                FontAttributes="Bold"
+                                TextColor="#00D65B"
+                                Margin="5,0,5,0"
+                                FontSize="11"
+                                HorizontalOptions="{Binding layoutOptions}"
+                                Text="{Binding SendTime, StringFormat='{0:HH:mm}'}" />
+
+                            <Frame MaximumWidthRequest="190" HorizontalOptions="{Binding layoutOptions}"  HasShadow="False" BorderColor="{Binding Color}" BackgroundColor="#303030">
+                                <StackLayout BackgroundColor="Transparent" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
+                                    <Label 
+                                    FontAttributes="Bold"
+                                    TextColor="White"
+                                    FontSize="12"
+                                    Text="{Binding Text}"
+                                     />
+                                </StackLayout>
+                            </Frame>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <HorizontalStackLayout Grid.Row="2" >
+                <Border Opacity="1" BackgroundColor="Transparent" MaximumHeightRequest="100" Margin="10,0,0,30" WidthRequest="310">
+                <Border.StrokeShape>
+                        <RoundRectangle BackgroundColor="Transparent" CornerRadius="20,20,20,20"/>
+                </Border.StrokeShape>
+                    <Entry Text="{Binding Field}" TextColor="White" FontSize="20" BackgroundColor="#272727"  />
+            </Border>
+                <mdc:IconButton HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="End" IconColor="White" Opacity="0.4" Margin="10,0,0,30"  BackgroundColor="Black" IconData="{Static icon:Material.Send}" Command="{Binding SendMessageCommand}"/>
+            </HorizontalStackLayout>
+           
+        </Grid>
+    </RefreshView>
+</ContentPage>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FreelanceRu.Pages.RegistrationPage"
+             xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+             xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <mdc:ProgressIndicator x:Name="activityIndicator" IsVisible="False" Style="{DynamicResource CircularProgressIndicatorStyle}" />
+        <VerticalStackLayout Grid.Row="1">
+            <mdc:IconButton IconData="{Static icon:Material.VerifiedUser}" Style="{DynamicResource OutlinedIconButtonStyle}" IconColor="#228E5D" />
+            <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Title" Text="Регистрация"/>
+        </VerticalStackLayout>
+        <StackLayout Grid.Row="2">
+            <VerticalStackLayout >
+                <mdc:TextField
+                    x:Name="LoginField"
+                    SupportingText=""
+                    LabelText="Введите почту"
+                    IconData="{Static icon:Material.Mail}"
+                    Style="{DynamicResource FilledTextFieldStyle}"
+                    WidthRequest="250" />
+                <mdc:TextField
+                    x:Name="PasswordField"
+                    SupportingText=""
+                    InputType="Password"
+                    LabelText="Введите пароль"
+                    IconData="{Static icon:Material.Lock}"
+                    Style="{DynamicResource FilledTextFieldStyle}"
+                    WidthRequest="250" />
+                <mdc:TextField
+                    x:Name="RepeatPasswordField"
+                    SupportingText=""
+                    InputType="Password"
+                    LabelText="Повторите пароль"
+                    IconData="{Static icon:Material.Lock}"
+                    Style="{DynamicResource FilledTextFieldStyle}"
+                    WidthRequest="250" />
+                <mdc:TextField
+                    x:Name="FirstNameField"
+                    SupportingText=""
+                    LabelText="Введите имя"
+                    IconData="{Static icon:Material.LabProfile}"
+                    Style="{DynamicResource FilledTextFieldStyle}"
+                    WidthRequest="250" />
+                <mdc:TextField
+                    x:Name="SecondNameField"
+                    SupportingText=""
+                    LabelText="Введите фамилию"
+                    IconData="{Static icon:Material.LabProfile}"
+                    Style="{DynamicResource FilledTextFieldStyle}"
+                    WidthRequest="250" />
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <mdc:Button Clicked="RegisterClicked" HeightRequest="50"  WidthRequest="300" Style="{DynamicResource FilledTonalButtonStyle}" Text="Зарегистрироваться" />
+                <Button Clicked="OnButtonNavigateClicked" BackgroundColor="Transparent" WidthRequest="280" HeightRequest="40" Margin="0,10,0,0" Text="Есть аккаунт? Войти!" TextColor="#228E5D"/>
+            </VerticalStackLayout>
+        </StackLayout>
+
+
+    </Grid>
+</ContentPage>
